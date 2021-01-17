@@ -29,7 +29,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
       
     - name: Run the tests and generate coverage report 
-    - run: npm install dependencies 
+      run: npm install dependencies 
       
     - name: Run the tests and generate coverage report 
       run: npm test --coverage 
