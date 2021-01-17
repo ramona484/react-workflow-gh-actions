@@ -27,12 +27,20 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+        
+    - name: Restore node_modules from cache
+      uses: actions/cache@v2
+      with: 
+        path: | 
+          node_modules
+          */*/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }} 
       
     - name: Run the tests and generate coverage report 
       run: npm install dependencies 
       
     - name: Run the tests and generate coverage report 
-      run: npm test --coverage 
+      run: npm test -- --coverage 
     
     - name: Upload coverage to Codecov 
       uses: codecov/codecov-action@v1
